@@ -1,13 +1,14 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+//    id 'kotlin-kapt'
     id 'kotlin-android-extensions'
     id 'dagger.hilt.android.plugin'
     id 'maven-publish'
 }
 
 group = 'com.github.bayan1987'
-version = '1.1'
+version = '1.2'
 
 
 android {
@@ -16,8 +17,8 @@ android {
     defaultConfig {
         minSdk 24
         targetSdk 31
-        versionCode 2
-        versionName "1.1"
+        versionCode 3
+        versionName "1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -30,11 +31,26 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
         jvmTarget = '11'
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/gradle/incremental.annotation.processors'
+        exclude("META-INF/*.kotlin_module")
     }
 }
 
@@ -74,7 +90,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.bayan1987'
                 artifactId = 'HospitalsWS'
-                version = '1.1'
+                version = '1.2'
             }
 
             debug(MavenPublication) {
@@ -83,7 +99,7 @@ afterEvaluate {
 
                 groupId = 'com.github.bayan1987'
                 artifactId = 'HospitalsWS'
-                version = '1.1'
+                version = '1.2'
             }
         }
     }
